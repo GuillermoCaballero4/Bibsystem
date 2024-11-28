@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ac4d7140-cebf-4375-a3bd-b7eca2b228d8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="cabdevoluciones" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT dd.id_detalle_devolucion, l.titulo_libro, dd.cantidad_dev 
+                     FROM detalle_devolucion dd 
+                     INNER JOIN devoluciones d on d.iddevolucion = dd.iddevolucion 
+                     INNER JOIN detalle_de_prestamos dp on d.idprestamo = dp.idprestamo 
+                     INNER JOIN prestamos pr ON pr.idprestamo = dp.idprestamo 
+                     INNER JOIN reservas r ON r.idreserva = pr.idreserva 
+                     INNER JOIN detalle_reserva_de_libros dtr ON dtr.idreserva = r.idreserva 
+                     INNER JOIN libros l ON dtr.idlibro = l.idlibro 
+                     WHERE dd.iddevolucion = $P{cabdevoluciones}]]>
+	</queryString>
+	<field name="id_detalle_devolucion" class="java.lang.Integer"/>
+	<field name="titulo_libro" class="java.lang.String"/>
+	<field name="cantidad_dev" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="362" height="20" uuid="acd6e50b-0e89-40a9-b784-d396506fcf79"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{titulo_libro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="362" y="0" width="192" height="20" uuid="473452ee-8dc5-4ca5-bc7f-a882571e25e4"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cantidad_dev}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

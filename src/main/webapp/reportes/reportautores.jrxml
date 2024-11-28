@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7dc7414d-5c84-4e02-9f70-01c03ec4b731">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT idautor, nombre_autor, apellido_autor, codigo_autor
+	FROM public.autores;]]>
+	</queryString>
+	<field name="idautor" class="java.lang.Integer"/>
+	<field name="nombre_autor" class="java.lang.String"/>
+	<field name="apellido_autor" class="java.lang.String"/>
+	<field name="codigo_autor" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="117" y="21" width="297" height="41" uuid="91be91f4-c7a1-4264-8286-7f6f0a1d73ee"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[Reporte general de autores]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="138" height="20" uuid="283cc049-f928-4dcf-8d11-cc1f8d6b7283"/>
+				<text><![CDATA[#]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="138" y="0" width="138" height="20" uuid="500eb3dc-b50b-47b2-8ab9-2b1d5a99d13d"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="0" width="138" height="20" uuid="90bf0418-8e0b-4813-9f8a-d179ce22fdb7"/>
+				<text><![CDATA[Apellido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="414" y="0" width="138" height="20" uuid="4652b5f2-1e05-40a8-a9aa-b87230ef825b"/>
+				<text><![CDATA[Codigo del Autor]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="138" height="20" uuid="6d748583-0556-4ba3-beee-b6bc82072bfd"/>
+				<textFieldExpression><![CDATA[$F{idautor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="0" width="138" height="20" uuid="b4c7e94b-08aa-4505-a4ab-4d4bddaad1b3"/>
+				<textFieldExpression><![CDATA[$F{nombre_autor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="0" width="138" height="20" uuid="953fbf01-fe69-48df-91e8-8ee196df8bc1"/>
+				<textFieldExpression><![CDATA[$F{apellido_autor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="0" width="138" height="20" uuid="e38b2578-3f51-4b31-ab31-6e631ebbd333"/>
+				<textFieldExpression><![CDATA[$F{codigo_autor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

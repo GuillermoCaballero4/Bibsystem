@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c76aa949-55c1-4130-9020-7e808e62e5b7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="titulo_libro" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idfechaa" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idfechab" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select l.titulo_libro, dr.cantidad_reserva, TO_CHAR(dr.fechafinreserva, 'DD-MM-YYYY') AS fechafinreserva  from detalle_reserva_de_libros dr, libros l where l.idlibro = dr.idlibro and  dr.fechafinreserva BETWEEN $P{idfechaa} AND $P{idfechab}  AND  ($P{titulo_libro} = 'Todos los libros'  OR    l.titulo_libro = $P{titulo_libro})]]>
+	</queryString>
+	<field name="titulo_libro" class="java.lang.String"/>
+	<field name="cantidad_reserva" class="java.lang.Integer"/>
+	<field name="fechafinreserva" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="134" splitType="Stretch">
+			<textField>
+				<reportElement x="427" y="98" width="100" height="20" uuid="9947a90e-c0ca-4da8-8ea4-5f0a2d68a074"/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd-MM-yyyy").format($P{idfechab})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="98" width="100" height="20" uuid="e579212b-ebf0-4ebe-9d2f-48bfeaf02586"/>
+				<text><![CDATA[Fecha de inicio:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="113" y="98" width="100" height="20" uuid="fa3ca793-1141-4ac0-8017-ced1a5161e26"/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd-MM-yyyy").format($P{idfechaa})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="327" y="98" width="100" height="20" uuid="cf3430ba-8f65-42a1-9089-2788bf784031"/>
+				<text><![CDATA[Fecha fin:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="256" y="55" width="272" height="20" uuid="967946c5-801b-486e-8614-1b8f22c2b11b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[San Lorenzo - Paraguay]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="255" y="35" width="272" height="20" uuid="19672922-738d-4c0e-ac6a-2d59f994de74"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Colegio Nacional San Lorenzo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="10" width="220" height="58" uuid="11e2e0b5-8784-4e17-9e44-16c604ed4d3c"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[INFORME DETALLE DELAS RESERVAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="255" y="10" width="272" height="25" uuid="a438427a-074d-4f2c-92c3-2372b332c570"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bibsystem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="75" width="35" height="20" uuid="968cd541-682b-4c93-a045-41f4df63864f"/>
+				<text><![CDATA[Libro:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="48" y="75" width="100" height="20" uuid="93f80040-7b65-497f-b7fe-095312e5edcb"/>
+				<textFieldExpression><![CDATA[$P{titulo_libro}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="185" height="20" uuid="40933cb8-cfac-4868-942e-2819566d1735"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Nombre del Libro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="185" y="0" width="185" height="20" uuid="b8da51d5-986c-4aeb-8d7e-37e6f46b56c2"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="0" width="185" height="20" uuid="a9aef954-a756-4c72-b99f-2026666efd06"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="50" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="185" height="41" uuid="216d918e-b21b-4da4-a071-89affc0c4ed5"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{titulo_libro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="0" width="185" height="20" uuid="76a14234-4652-4658-985e-c293d4efdb19"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cantidad_reserva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="0" width="185" height="20" uuid="cedc8b23-d196-4086-b7c2-05136a38fae3"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fechafinreserva}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

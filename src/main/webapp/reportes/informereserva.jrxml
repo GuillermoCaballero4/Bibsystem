@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7fb725e0-79c5-41bf-8d0d-a363f8bf940e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idfechaa" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idfechab" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="estado" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nombre_usu" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+    r.idreserva, 
+    TO_CHAR(r.fechareserva, 'DD-MM-YYYY') AS fechareserva, 
+    per.nombre_persona, 
+    per.ci_persona, 
+    u.nombre_usu,
+    r.estado
+FROM 
+    public.reservas r
+JOIN 
+    public.personas per ON r.idpersona = per.idpersona
+JOIN 
+    public.usuarios u ON r.idusuario = u.idusuario
+WHERE
+    r.fechareserva BETWEEN $P{idfechaa} AND $P{idfechab}  AND  ($P{nombre_usu} = 'Todos los usuarios'  OR    u.nombre_usu = $P{nombre_usu}) AND ($P{estado} = 'Todos' OR r.estado = $P{estado})]]>
+	</queryString>
+	<field name="idreserva" class="java.lang.Integer"/>
+	<field name="fechareserva" class="java.lang.String"/>
+	<field name="nombre_persona" class="java.lang.String"/>
+	<field name="ci_persona" class="java.lang.Integer"/>
+	<field name="nombre_usu" class="java.lang.String"/>
+	<field name="estado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement x="272" y="0" width="272" height="25" uuid="be40b321-187b-4833-b0ab-6137eb20c1b5"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bibsystem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="272" y="25" width="272" height="20" uuid="cc8a7f0b-71b0-4466-99c3-13af87e6baae"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Colegio Nacional San Lorenzo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="273" y="45" width="272" height="20" uuid="c57d37b8-8965-45e8-bc42-085cf0e44eff"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[San Lorenzo - Paraguay]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="7" width="210" height="38" uuid="44a9b70f-e08f-4f65-b819-d40ab7d56b00"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[INFORME RESERVAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="74" width="100" height="20" uuid="1e27dd15-64f6-48c1-a4dc-f851e77d9a0b"/>
+				<text><![CDATA[Fecha de inicio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="318" y="74" width="100" height="20" uuid="ac698233-203c-45a0-ab84-6a748493193b"/>
+				<text><![CDATA[Fecha fin:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="418" y="74" width="100" height="20" uuid="9b12df59-32e0-4931-9cd9-3b6db8625091"/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd-MM-yyyy").format($P{idfechab})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="104" y="74" width="100" height="20" uuid="ed6192bd-b5a8-41c5-80bd-47f73b13aa83"/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd-MM-yyyy").format($P{idfechaa})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="54" width="100" height="20" uuid="d3ef699d-3e66-45f2-989a-4e2287db5131"/>
+				<text><![CDATA[Usuario:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="104" y="54" width="100" height="20" uuid="514fca89-aee1-45e2-be1c-798f7d9454fb"/>
+				<textFieldExpression><![CDATA[$P{nombre_usu}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="92" height="20" uuid="5564b164-fdb8-4770-a691-57c7fae00542"/>
+				<text><![CDATA[N° Reserva]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="92" y="0" width="112" height="20" uuid="ea164da0-d298-49d2-ad43-9a1c8635fdf8"/>
+				<text><![CDATA[fecha de la reserva]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="204" y="0" width="72" height="20" uuid="d808e208-07a9-40dd-b1fc-5dc4ca883f63"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="0" width="92" height="20" uuid="53114196-c8c8-4bb9-82fa-a5d7d05cef8b"/>
+				<text><![CDATA[Ci]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="0" width="92" height="20" uuid="164b239c-f1b6-4488-8593-fdeb294a49b8"/>
+				<text><![CDATA[Bibliotecario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="0" width="92" height="20" uuid="9cab71b6-7f2d-45aa-8d52-0843a19f529b"/>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="92" height="20" uuid="72325aca-463d-4fcb-8d62-d0be11050ca0"/>
+				<textFieldExpression><![CDATA[$F{idreserva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="92" y="0" width="112" height="20" uuid="24da90ea-d97e-4018-a5c3-ca4a188e00df"/>
+				<textFieldExpression><![CDATA[$F{fechareserva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="204" y="0" width="72" height="20" uuid="53ba147f-e98e-4c84-9124-b400a172a932"/>
+				<textFieldExpression><![CDATA[$F{nombre_persona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="0" width="92" height="20" uuid="0f7ad443-fa45-4225-975e-72fb7089e948"/>
+				<textFieldExpression><![CDATA[$F{ci_persona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="368" y="0" width="92" height="20" uuid="884a7328-9009-4d92-b62b-431a0ba6d6e3"/>
+				<textFieldExpression><![CDATA[$F{nombre_usu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="0" width="92" height="20" uuid="27c20c58-313f-4b8e-913e-ba73b14414c1"/>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

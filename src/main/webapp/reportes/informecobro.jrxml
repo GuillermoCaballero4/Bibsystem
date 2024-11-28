@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="450fa393-50a5-481a-a1d1-7f78c0d83f90">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idfechaa" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idfechab" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+    cob.idcobro_multa,
+    cob.iddevolucion,
+    cob.idusuario,
+    per.idpersona,
+    TO_CHAR(dev.fecha_de_la_dev, 'YYYY-MM-DD') AS fecha_de_la_dev,
+    per.ci_persona,
+    per.nombre_persona,
+    dev.monto_multa,
+	monto_cobrado,
+    dev.motivo_multa,
+    TO_CHAR(cob.fecha_co, 'YYYY-MM-DD') AS fecha_cobro,
+    cob.estado_co, mt.descripcion
+
+FROM devoluciones dev 
+LEFT JOIN cobro_de_multa cob ON cob.iddevolucion = dev.iddevolucion 
+INNER JOIN prestamos pr ON pr.idprestamo = dev.idprestamo 
+INNER JOIN reservas r ON r.idreserva = pr.idreserva 
+INNER JOIN personas per ON per.idpersona = r.idpersona
+INNER JOIN metodo_de_de_pago mt on mt.idmetododepago = cob.idmetododepago
+WHERE
+   dev.fecha_de_la_dev BETWEEN $P{idfechaa} AND $P{idfechab}
+AND cob.estado_co = 'Cobrado';]]>
+	</queryString>
+	<field name="idcobro_multa" class="java.lang.Integer"/>
+	<field name="iddevolucion" class="java.lang.Integer"/>
+	<field name="idusuario" class="java.lang.Integer"/>
+	<field name="idpersona" class="java.lang.Integer"/>
+	<field name="fecha_de_la_dev" class="java.lang.String"/>
+	<field name="ci_persona" class="java.lang.Integer"/>
+	<field name="nombre_persona" class="java.lang.String"/>
+	<field name="monto_multa" class="java.lang.Integer"/>
+	<field name="monto_cobrado" class="java.lang.Integer"/>
+	<field name="motivo_multa" class="java.lang.String"/>
+	<field name="fecha_cobro" class="java.lang.String"/>
+	<field name="estado_co" class="java.lang.String"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="12" width="553" height="47" uuid="5eb9d99d-e581-4adc-bdac-d94c4cddfeab"/>
+				<textElement textAlignment="Center">
+					<font size="34"/>
+				</textElement>
+				<text><![CDATA[Informe de Cobros]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="faa9d205-148f-41f8-90f5-1e1e8b701c79"/>
+				<text><![CDATA[Fecha de inicio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="314" y="0" width="100" height="20" uuid="547dc1ee-3277-4dcd-be64-4fe835daaab9"/>
+				<text><![CDATA[Fecha fin:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="22cc122d-6cbe-4776-8d79-e062759a7732"/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("yyyy-MM-dd").format($P{idfechaa})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="0" width="100" height="20" uuid="ddaabfd9-fe0e-49a6-9006-576730dbdd3d"/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("yyyy-MM-dd").format($P{idfechab})]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="69" height="20" uuid="10241895-8b30-4935-a1ad-4dec6f0319f9"/>
+				<text><![CDATA[#]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="69" y="0" width="69" height="20" uuid="8dca3cf8-f4cf-419b-a37e-aee6f897c474"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="138" y="0" width="69" height="20" uuid="97d01f1d-16c8-47c7-afbe-6fa5bba2a8eb"/>
+				<text><![CDATA[CI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="207" y="0" width="69" height="20" uuid="62ff4576-07d4-4a18-9412-c575698484fc"/>
+				<text><![CDATA[Monto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="0" width="69" height="20" uuid="3b572397-efd3-4233-a66a-7774d7ac2150"/>
+				<text><![CDATA[Motivo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="345" y="0" width="69" height="20" uuid="9cd80bd2-6825-4cb1-a811-f4f0ec24bbc0"/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="414" y="0" width="69" height="20" uuid="8c568804-a7d1-4652-8fc8-3b91d50722c7"/>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="483" y="0" width="69" height="20" uuid="0bf214b7-fc03-420d-af38-0831b95cd41c"/>
+				<text><![CDATA[Metodo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="69" height="20" uuid="b87b71b6-1bda-43e4-b559-b4916e68e387"/>
+				<textFieldExpression><![CDATA[$F{idcobro_multa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="69" y="0" width="69" height="20" uuid="905e89e4-2355-4f48-972c-33f565b122f0"/>
+				<textFieldExpression><![CDATA[$F{nombre_persona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="0" width="69" height="20" uuid="8bcbdb47-511f-45a2-bc32-4f3ba05ab810"/>
+				<textFieldExpression><![CDATA[$F{ci_persona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="207" y="0" width="69" height="20" uuid="0a80a828-ecea-4aa3-87b1-0a9258fd99ec"/>
+				<textFieldExpression><![CDATA[$F{monto_cobrado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="0" width="69" height="34" uuid="1ca3ba63-fe63-4d0d-8349-1e086ccbac5d"/>
+				<textFieldExpression><![CDATA[$F{motivo_multa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="345" y="0" width="69" height="20" uuid="3039d629-890c-4e6c-9f1e-20839af7b23c"/>
+				<textFieldExpression><![CDATA[$F{fecha_cobro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="0" width="69" height="20" uuid="53186af5-ca53-4963-8df4-b5af9362f67b"/>
+				<textFieldExpression><![CDATA[$F{estado_co}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="483" y="0" width="69" height="20" uuid="63d913ba-e542-427e-8a67-c46949a6fcd9"/>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

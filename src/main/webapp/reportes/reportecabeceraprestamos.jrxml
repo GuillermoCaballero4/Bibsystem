@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7238c3cc-9211-47d6-9431-7ff78f0f852e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="144"/>
+	<parameter name="cabprestamo" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/media/david/d/David Caballero TIC PENDRIVE/JAVAWEB/Bibsystem/src/main/webapp/reportes/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+    p.idprestamo, 
+    TO_CHAR(p.fechaprestamo, 'DD-MM-YYYY') AS fechaprestamo, 
+    TO_CHAR(p.fechadevolucion, 'DD-MM-YYYY') AS fechadevolucion, 
+    per.nombre_persona, 
+    per.ci_persona, 
+    p.estadoprestamo,
+	u.nombre_usu
+FROM 
+    public.prestamos p
+JOIN
+	public.usuarios u ON u.idusuario = p.idusuario
+JOIN 
+    public.reservas r ON p.idreserva = r.idreserva
+JOIN 
+    public.personas per ON r.idpersona = per.idpersona
+WHERE 
+    p.idprestamo = $P{cabprestamo};]]>
+	</queryString>
+	<field name="idprestamo" class="java.lang.Integer"/>
+	<field name="fechaprestamo" class="java.lang.String"/>
+	<field name="fechadevolucion" class="java.lang.String"/>
+	<field name="nombre_persona" class="java.lang.String"/>
+	<field name="ci_persona" class="java.lang.Integer"/>
+	<field name="estadoprestamo" class="java.lang.String"/>
+	<field name="nombre_usu" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="188" splitType="Stretch">
+			<staticText>
+				<reportElement x="283" y="28" width="272" height="20" uuid="af91c6fc-5cfd-42e6-b885-a51cb9e18e3f"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Colegio Nacional San Lorenzo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="3" width="272" height="25" uuid="48c4137e-16aa-4d1a-a708-e334dac51a73"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bibsystem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="284" y="48" width="272" height="20" uuid="b77c8b5a-e25e-43c0-aa52-80f7e395860b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[San Lorenzo - Paraguay]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="92" width="555" height="85" uuid="6862f3f0-91d8-4d00-a806-2eb8ba307ecc"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="298" y="127" width="112" height="20" uuid="fab823cf-fed6-4676-8ce8-8cba82967923"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Número del prestamo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="127" width="100" height="20" uuid="beee76a3-6556-4b47-8a72-a0989fa3296f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="103" width="100" height="20" uuid="d17d5369-cf60-43ff-88cb-57d09afb7b54"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Fecha de Emisión:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="157" width="100" height="20" uuid="4f2d7ecd-0cd8-4324-90f9-dc63c8b42ad9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[CI:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="283" y="92" width="1" height="85" uuid="308908e7-c114-431b-9d9c-95315655ffca"/>
+			</line>
+			<staticText>
+				<reportElement x="298" y="103" width="111" height="20" uuid="ede60220-746a-4b44-97da-46ed9492ebe8"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Bibliotecario:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="409" y="127" width="110" height="20" uuid="e7c002fb-f587-4570-b72c-a9910541b8a1"/>
+				<textFieldExpression><![CDATA[$F{idprestamo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="299" y="157" width="111" height="20" uuid="1b23062c-d5e1-4463-acf7-7f86058f8878"/>
+				<text><![CDATA[Fecha de devolucion:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="125" y="104" width="115" height="20" uuid="5543835c-7726-4c69-a759-4c1bb1a91c13"/>
+				<textFieldExpression><![CDATA[$F{fechaprestamo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="157" width="110" height="20" uuid="55467489-bd25-4ebe-ac58-40744a1a3b10"/>
+				<textFieldExpression><![CDATA[$F{fechadevolucion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="125" y="127" width="115" height="20" uuid="8441a5ba-592a-45c6-b7da-f70fe907982a"/>
+				<textFieldExpression><![CDATA[$F{nombre_persona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="125" y="157" width="100" height="20" uuid="8b92a084-25b3-49bf-8a92-2d067813bb22"/>
+				<textFieldExpression><![CDATA[$F{ci_persona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="103" width="110" height="20" uuid="0c80b19f-5355-4b9f-98b6-1a97443b2560"/>
+				<textFieldExpression><![CDATA[$F{nombre_usu}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="219" splitType="Stretch">
+			<rectangle>
+				<reportElement x="380" y="10" width="175" height="205" uuid="b36bd0e4-6233-4611-818f-5197cb9723f7"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="382" y="10" width="173" height="20" uuid="cf62508e-e951-4ece-a5fa-d61d690cf5e2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="10" width="380" height="205" uuid="64ee6f64-c896-4042-9d37-81b5fc963cf2"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="10" width="381" height="20" uuid="94fed2fd-ff51-4c19-81b1-053d7691a840"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Libro]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="30" width="555" height="185" uuid="f7ab0af5-93ca-47d2-bcf6-168c8ffa87db"/>
+				<subreportParameter name="cabprestamo">
+					<subreportParameterExpression><![CDATA[$P{cabprestamo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reportedetalleprestamos.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="220" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="228" splitType="Stretch"/>
+	</summary>
+</jasperReport>

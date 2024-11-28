@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ff25496d-f4e7-4df9-9f96-fb8653e75345">
+	<property name="ireport.zoom" value="1.2100000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idfechaa" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idfechab" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="estado" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+    d.iddevolucion, 
+    TO_CHAR(d.fecha_de_la_dev, 'DD-MM-YYYY') AS fecha_devolucion, 
+    per.nombre_persona, 
+    per.ci_persona, 
+    d.monto_multa, 
+    d.motivo_multa, 
+    u.nombre_usu, 
+    d.estado
+FROM 
+    public.devoluciones d
+JOIN 
+    public.prestamos p ON d.idprestamo = p.idprestamo
+JOIN
+    public.usuarios u ON d.idusuario = u.idusuario
+JOIN 
+    public.reservas r ON p.idreserva = r.idreserva
+JOIN 
+    public.personas per ON r.idpersona = per.idpersona
+WHERE
+    d.fecha_de_la_dev BETWEEN $P{idfechaa} AND $P{idfechab} AND ($P{estado} = 'Todos' OR d.estado = $P{estado})]]>
+	</queryString>
+	<field name="iddevolucion" class="java.lang.Integer"/>
+	<field name="fecha_devolucion" class="java.lang.String"/>
+	<field name="nombre_persona" class="java.lang.String"/>
+	<field name="ci_persona" class="java.lang.Integer"/>
+	<field name="monto_multa" class="java.lang.Integer"/>
+	<field name="motivo_multa" class="java.lang.String"/>
+	<field name="nombre_usu" class="java.lang.String"/>
+	<field name="estado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="109" splitType="Stretch">
+			<staticText>
+				<reportElement x="283" y="37" width="272" height="20" uuid="6966ba6d-8e2a-4f97-b792-36779d3c0e35"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Colegio Nacional San Lorenzo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="12" width="272" height="25" uuid="340e554b-9e8f-43ed-be0c-7e70c915e88a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bibsystem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="37" width="266" height="38" uuid="b5422a61-44d5-41f6-ace0-9b5c9b02e501"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[INFORME DE DEVOLUCIONES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="284" y="57" width="272" height="20" uuid="66edc08e-1bab-4bda-8925-67cc71aebcf5"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[San Lorenzo - Paraguay]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="77" width="100" height="20" uuid="c8a00744-6ffc-4781-b05f-d5d162dd6ad4"/>
+				<text><![CDATA[Fecha de inicio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="321" y="77" width="100" height="20" uuid="404d4d74-cdb1-475f-a8b0-7b5983344e14"/>
+				<text><![CDATA[Fecha fin:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="421" y="77" width="100" height="20" uuid="45630d31-da88-4e31-b9e8-b73a5f99a5d8"/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("yyyy-MM-dd").format($P{idfechab})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="107" y="77" width="100" height="20" uuid="3ab21e6b-b2df-499a-8bdf-f1142cf6c95f"/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("yyyy-MM-dd").format($P{idfechaa})]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="30" height="20" uuid="cd6d2b40-f486-4da1-a232-078922d768e5"/>
+				<text><![CDATA[N°]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="0" width="108" height="20" uuid="7e818835-b076-4f9c-97e5-5477bbcba805"/>
+				<text><![CDATA[fecha de devolucion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="138" y="0" width="69" height="20" uuid="3a56b8fb-c14b-4f74-a451-09d17dff8ffb"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="207" y="0" width="69" height="20" uuid="40d6860e-dca3-483c-84d7-d94c331d1d55"/>
+				<text><![CDATA[Ci]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="0" width="69" height="20" uuid="3182cac8-e3b4-432b-9f01-5b2616d4cae6"/>
+				<text><![CDATA[Monto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="345" y="0" width="69" height="20" uuid="66557045-b24b-4e13-955c-e0d30e3ba0ad"/>
+				<text><![CDATA[Motivo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="414" y="0" width="69" height="20" uuid="8c864f2e-6bc6-46e8-9fa2-4d6037f07954"/>
+				<text><![CDATA[BIbliotecario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="483" y="0" width="69" height="20" uuid="34e475d3-052b-40c0-9b42-6e09a52e1fa7"/>
+				<text><![CDATA[estado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="30" height="20" uuid="999a3306-06ae-43a2-8b11-49dbbc4fb834"/>
+				<textFieldExpression><![CDATA[$F{iddevolucion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="0" width="108" height="20" uuid="0a531483-3960-4986-8f13-0af8b6253306"/>
+				<textFieldExpression><![CDATA[$F{fecha_devolucion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="0" width="69" height="20" uuid="56a65041-689f-4856-bf3f-a3fee987a99b"/>
+				<textFieldExpression><![CDATA[$F{nombre_persona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="207" y="0" width="69" height="20" uuid="ad9c6dda-fe98-499f-838c-25bcbb8be563"/>
+				<textFieldExpression><![CDATA[$F{ci_persona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="0" width="69" height="20" uuid="225ce65a-86a0-48ab-98a1-a1bf048f23a9"/>
+				<textFieldExpression><![CDATA[$F{monto_multa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="345" y="0" width="69" height="20" uuid="d7aa7c94-f1d6-4e6e-8c5b-d39e0b0a69e1"/>
+				<textFieldExpression><![CDATA[$F{motivo_multa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="0" width="69" height="20" uuid="99eaac9a-d985-47ef-9fbb-c1d054099a38"/>
+				<textFieldExpression><![CDATA[$F{nombre_usu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="483" y="0" width="69" height="20" uuid="4ac694e8-9d9b-435c-bddf-9f12320931b4"/>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

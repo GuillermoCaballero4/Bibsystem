@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7749be35-0f61-4076-b5dc-09e6385b866e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idfechaa" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idfechab" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="estado" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+    d.iddonacion, 
+    TO_CHAR(d.fecha_donacion, 'DD-MM-YYYY') AS fecha_donacion, 
+    p.nombre_persona, 
+    p.ci_persona, 
+    d.estado
+FROM 
+    public.donaciones d
+JOIN 
+    public.personas p ON d.idpersona = p.idpersona
+WHERE
+    d.fecha_donacion BETWEEN $P{idfechaa} AND $P{idfechab} AND ($P{estado} = 'Todos' OR d.estado = $P{estado})]]>
+	</queryString>
+	<field name="iddonacion" class="java.lang.Integer"/>
+	<field name="fecha_donacion" class="java.lang.String"/>
+	<field name="nombre_persona" class="java.lang.String"/>
+	<field name="ci_persona" class="java.lang.Integer"/>
+	<field name="estado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="105" splitType="Stretch">
+			<staticText>
+				<reportElement x="250" y="35" width="272" height="20" uuid="d917748b-cb49-4f44-9de6-7727239610b7"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Colegio Nacional San Lorenzo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="10" width="272" height="25" uuid="28e3e9ac-18b8-488d-b701-294d7e594758"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bibsystem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="37" width="219" height="38" uuid="70edfd2c-e753-4b2b-8fac-bb3591a9e200"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[INFORME DONACIONES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="251" y="55" width="272" height="20" uuid="aabb7b3d-133f-4a79-b09f-fa87e2bce911"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[San Lorenzo - Paraguay]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="75" width="100" height="20" uuid="0c58035a-37b2-4c7e-b250-baf248fe3147"/>
+				<text><![CDATA[Fecha de inicio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="325" y="75" width="100" height="20" uuid="251370b9-141c-466b-a5e8-47fc69f42d27"/>
+				<text><![CDATA[Fecha fin:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="425" y="75" width="100" height="20" uuid="607d016b-4272-4b62-806a-cbf7b8e64b6e"/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("yyyy-MM-dd").format($P{idfechab})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="75" width="100" height="20" uuid="ea9031ab-d33c-4926-874b-24722f5b2f1f"/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("yyyy-MM-dd").format($P{idfechaa})]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="37" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="111" height="20" uuid="3b8b0413-dfde-45e5-802c-85010e79107c"/>
+				<text><![CDATA[N° donacion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="0" width="111" height="20" uuid="d168d31d-a98e-4b0d-9ded-301ff96b1386"/>
+				<text><![CDATA[fecha de donacion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="0" width="111" height="20" uuid="1016c6ac-8954-4397-8369-376ff1f639a1"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="333" y="0" width="111" height="20" uuid="16bca3e5-91ad-425e-ac79-8408b83ab3db"/>
+				<text><![CDATA[Ci]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="0" width="111" height="20" uuid="ab04c504-c63a-41ec-bafe-4489aac2ef93"/>
+				<text><![CDATA[estado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="111" height="20" uuid="e7e157ec-41b5-4e11-ade4-3127fccbe8b8"/>
+				<textFieldExpression><![CDATA[$F{iddonacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="0" width="111" height="20" uuid="f120ed24-3e0b-494b-b9af-6caa7be0a577"/>
+				<textFieldExpression><![CDATA[$F{fecha_donacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="0" width="111" height="20" uuid="830c7373-6472-4f80-bde5-3406dc8f5347"/>
+				<textFieldExpression><![CDATA[$F{nombre_persona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="333" y="0" width="111" height="20" uuid="924fefa5-df3e-4385-8615-3b8913b10a02"/>
+				<textFieldExpression><![CDATA[$F{ci_persona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="0" width="111" height="20" uuid="61dd2e60-02e2-4dec-8e03-4377c1c3b364"/>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

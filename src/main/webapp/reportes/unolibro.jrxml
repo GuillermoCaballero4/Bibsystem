@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7468ba8a-bb03-4405-9056-d1ab5cae5ae3">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idlibro" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT l.idlibro, l.titulo_libro, c.nombre_categoria, l.idcategoria, l.idautor, l.descripcion_libro, a.nombre_autor, l.isbn 
+                             FROM libros l 
+                             INNER JOIN categorias c ON l.idcategoria = c.idcategoria 
+                             INNER JOIN autores a ON l.idautor = a.idautor where idlibro = $P{idlibro};]]>
+	</queryString>
+	<field name="idlibro" class="java.lang.Integer"/>
+	<field name="titulo_libro" class="java.lang.String"/>
+	<field name="nombre_categoria" class="java.lang.String"/>
+	<field name="idcategoria" class="java.lang.Integer"/>
+	<field name="idautor" class="java.lang.Integer"/>
+	<field name="descripcion_libro" class="java.lang.String"/>
+	<field name="nombre_autor" class="java.lang.String"/>
+	<field name="isbn" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="285" y="18" width="173" height="20" uuid="c269adbe-4f33-4edd-ad02-225443f12fd0"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE LIBRO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="36" height="20" uuid="3c90ce17-9a11-4f95-88e8-3c8b7091ae6b"/>
+				<text><![CDATA[#]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="49" y="0" width="109" height="20" uuid="3c97caec-183b-4b9d-9ae4-73db9a31f873"/>
+				<text><![CDATA[TITULO DEL LIBRO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="158" y="0" width="92" height="20" uuid="ba1a4123-4298-4049-9d1b-c849ae410a3b"/>
+				<text><![CDATA[CATEGORIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="263" y="0" width="92" height="20" uuid="68f3c125-1ea6-472a-9f94-f0377b9814dc"/>
+				<text><![CDATA[AUTOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="0" width="268" height="20" uuid="006d5aa2-8953-4762-995c-97c597d6313a"/>
+				<text><![CDATA[DESCRIPCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="636" y="0" width="166" height="20" uuid="bc43cadf-0439-4591-89c7-9f5fe1b41d9e"/>
+				<text><![CDATA[ISBN]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="65" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="36" height="20" uuid="dfb245b6-f27b-43f2-9c35-a7578a4ed83d"/>
+				<textFieldExpression><![CDATA[$F{idlibro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="49" y="0" width="92" height="38" uuid="e6608fb3-5cb6-4cb0-8bbf-1d3a8c7952e4"/>
+				<textFieldExpression><![CDATA[$F{titulo_libro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="158" y="0" width="92" height="38" uuid="2a811f94-8a4f-41ff-bf9f-99e0af5cc84a"/>
+				<textFieldExpression><![CDATA[$F{nombre_categoria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="263" y="0" width="92" height="38" uuid="8255c08f-15e4-49fd-ac09-dcc8456997f8"/>
+				<textFieldExpression><![CDATA[$F{nombre_autor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="368" y="0" width="258" height="53" uuid="26996b0b-3e08-4057-bb3e-65aa4b438a55"/>
+				<textFieldExpression><![CDATA[$F{descripcion_libro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="636" y="0" width="166" height="20" uuid="5abe8526-9d14-4e08-8470-bf29d3e27fb5"/>
+				<textFieldExpression><![CDATA[$F{isbn}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

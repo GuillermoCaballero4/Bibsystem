@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6542e6f6-6c19-4d5a-9364-f0abd491cc60">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="15"/>
+	<parameter name="idcobro_multa" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="monto_cobrado" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT cob.idcobro_multa,cob.iddevolucion, u.nombre_usu, per.idpersona,monto_cobrado, per.ci_persona ,per.nombre_persona, dev.monto_multa, dev.motivo_multa, cob.fecha_co AS fecha_cobro, cob.estado_co , mt.descripcion
+            FROM devoluciones dev 
+            LEFT JOIN cobro_de_multa cob ON cob.iddevolucion = dev.iddevolucion 
+            INNER JOIN prestamos pr ON pr.idprestamo = dev.idprestamo 
+            INNER JOIN reservas r ON r.idreserva = pr.idreserva 
+            INNER JOIN personas per ON per.idpersona = r.idpersona
+		INNER JOIN usuarios u on u.idusuario = cob.idusuario
+	         INNER JOIN metodo_de_de_pago mt ON mt.idmetododepago = cob.idmetododepago where cob.idcobro_multa = $P{idcobro_multa}]]>
+	</queryString>
+	<field name="idcobro_multa" class="java.lang.Integer"/>
+	<field name="iddevolucion" class="java.lang.Integer"/>
+	<field name="nombre_usu" class="java.lang.String"/>
+	<field name="idpersona" class="java.lang.Integer"/>
+	<field name="monto_cobrado" class="java.lang.Integer"/>
+	<field name="ci_persona" class="java.lang.Integer"/>
+	<field name="nombre_persona" class="java.lang.String"/>
+	<field name="monto_multa" class="java.lang.Integer"/>
+	<field name="motivo_multa" class="java.lang.String"/>
+	<field name="fecha_cobro" class="java.sql.Date"/>
+	<field name="estado_co" class="java.lang.String"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<variable name="variable1" class="java.lang.String">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="198" splitType="Stretch">
+			<staticText>
+				<reportElement x="273" y="25" width="272" height="20" uuid="5aee2ad0-a4a5-41e7-8f1c-66ed7aab2724"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Colegio Nacional San Lorenzo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="273" y="0" width="272" height="25" uuid="ac40c980-c236-4701-b266-30b697426a8a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bibsystem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="274" y="45" width="272" height="20" uuid="7e34ded7-5176-4cec-b850-843ee552c71d"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[San Lorenzo - Paraguay]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="10" y="89" width="535" height="95" uuid="b4ed7706-2597-499d-a0e2-04b414859a25"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="316" y="124" width="112" height="20" uuid="0f8ef187-0938-4a55-915d-4d968a13eadb"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Número del cobro:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="24" y="124" width="100" height="20" uuid="39255c0d-a5cc-4845-a958-7a4fd5af0683"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="24" y="100" width="100" height="20" uuid="c38b806b-db43-4edd-8167-0929c06ff93e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Fecha de Emisión:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="24" y="154" width="100" height="20" uuid="0f9d0859-4b52-4b94-a18f-93ce45954de3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[CI:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="293" y="89" width="1" height="95" uuid="08cf9f15-85d9-4535-acd4-1ae1051a777f"/>
+			</line>
+			<staticText>
+				<reportElement x="316" y="100" width="111" height="20" uuid="85def6c8-6ec2-480f-8957-0927ce206751"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Bibliotecario:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="316" y="144" width="111" height="20" uuid="b4ecb7ab-fa41-4893-9b90-4bdb228d55a0"/>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="428" y="124" width="100" height="20" uuid="f3ea7c80-c010-4659-9d9b-34199a9418a1"/>
+				<textFieldExpression><![CDATA[$F{idcobro_multa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="100" width="115" height="20" uuid="6e582864-0b05-40d4-99e2-9e375e96c47a"/>
+				<textFieldExpression><![CDATA[$F{fecha_cobro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="124" width="115" height="20" uuid="274bafdf-b2a3-4a32-af14-96e5b3bd23de"/>
+				<textFieldExpression><![CDATA[$F{nombre_persona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="154" width="115" height="20" uuid="f64f694a-a44d-4c82-93e6-728c1bcf195b"/>
+				<textFieldExpression><![CDATA[$F{ci_persona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="427" y="144" width="100" height="20" uuid="49fe7f8a-fc9e-46f9-a88a-6bc1d2fd20f9"/>
+				<textFieldExpression><![CDATA[$F{estado_co}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="316" y="164" width="111" height="20" uuid="d3ea6d6a-793b-4c91-8f3d-f0e011a7f0d1"/>
+				<text><![CDATA[Forma de pago]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="428" y="164" width="100" height="20" uuid="8f43a844-bf2a-4142-8bab-9e45070caa99"/>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="427" y="100" width="100" height="20" uuid="9deb73f3-54b9-42ca-98ab-271e777361fb"/>
+				<textFieldExpression><![CDATA[$F{nombre_usu}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="45" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="6" width="294" height="32" uuid="0a953fc7-94f3-45f4-99df-51aa9699c622"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="294" y="6" width="251" height="32" uuid="d2681e7e-96dc-495b-9d8d-2989ce2eeacf"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="6" width="294" height="32" uuid="2e247d08-3fa4-45f7-b6ac-de58decc3400"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Motivo de la multa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="294" y="6" width="251" height="20" uuid="c8bf241a-4ffc-4356-9566-e508f5131e42"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Monto de la multa]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="100" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="-7" width="294" height="39" uuid="d8a3e7f4-ce45-4009-8510-7d74df0890e0"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="294" y="-7" width="251" height="39" uuid="da94bc08-d831-4c8d-8684-00c965d4392b"/>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="6" width="293" height="20" uuid="92289813-7bff-4e42-8a84-7528982bdaad"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{motivo_multa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="294" y="9" width="251" height="20" uuid="6cde44f4-058a-4614-a6bd-bd3e31ddc42f"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{monto_cobrado}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="1" y="37" width="293" height="30" uuid="bf9a50bc-af21-4268-a490-bd6de62483d3"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="2" y="68" width="293" height="25" uuid="1a3f08e9-e18f-4580-b8ab-18b0ee38055e"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="294" y="37" width="251" height="30" uuid="d3930561-3273-4ad9-a9af-642664178c7f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="295" y="68" width="251" height="25" uuid="bfe2530a-6666-4aa5-9b7b-a8f0ef51c7e2"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="43" width="264" height="25" uuid="4fdf3082-e958-4abf-a3e8-7750568cbb3d"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Son guaranies:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="68" width="263" height="25" uuid="9e1e3cc7-773e-4ce1-b6f2-501ea1d8f7c3"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Total Cobrado:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="295" y="68" width="251" height="25" uuid="46746ee7-532c-46ec-b8d7-6f8a212bfb43"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{monto_cobrado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="294" y="43" width="251" height="25" uuid="bdd58ebc-2ff4-4928-adb3-e9324e473fd3"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{monto_cobrado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="60" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

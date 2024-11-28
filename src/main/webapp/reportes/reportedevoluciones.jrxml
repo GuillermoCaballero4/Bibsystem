@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="adafc9fe-1859-434c-8eb0-20b234fcf08b">
+	<property name="ireport.zoom" value="1.2100000000000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="214"/>
+	<parameter name="cabdevoluciones" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/media/david/d/David Caballero TIC PENDRIVE/JAVAWEB/Bibsystem/src/main/webapp/reportes/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+    d.iddevolucion, 
+    TO_CHAR(d.fecha_de_la_dev, 'DD-MM-YYYY') AS fecha_devolucion, 
+    per.nombre_persona, 
+    per.ci_persona, 
+    d.monto_multa, 
+    d.motivo_multa, 
+    u.nombre_usu, 
+    d.estado
+FROM 
+    public.devoluciones d
+JOIN 
+    public.prestamos p ON d.idprestamo = p.idprestamo
+JOIN
+    public.usuarios u ON d.idusuario = u.idusuario
+JOIN 
+    public.reservas r ON p.idreserva = r.idreserva
+JOIN 
+    public.personas per ON r.idpersona = per.idpersona
+WHERE 
+    d.iddevolucion = $P{cabdevoluciones};
+]]>
+	</queryString>
+	<field name="iddevolucion" class="java.lang.Integer"/>
+	<field name="fecha_devolucion" class="java.lang.String"/>
+	<field name="nombre_persona" class="java.lang.String"/>
+	<field name="ci_persona" class="java.lang.Integer"/>
+	<field name="monto_multa" class="java.lang.Integer"/>
+	<field name="motivo_multa" class="java.lang.String"/>
+	<field name="nombre_usu" class="java.lang.String"/>
+	<field name="estado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="201" splitType="Stretch">
+			<staticText>
+				<reportElement x="284" y="55" width="272" height="20" uuid="9b102a03-a6ab-40d4-92d5-1965a0b0705e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[San Lorenzo - Paraguay]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="10" width="272" height="25" uuid="b51a02f6-25c4-4682-a057-3cfc27b07de9"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bibsystem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="35" width="272" height="20" uuid="517e8ea1-1460-43f9-b248-e15013b8edb7"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Colegio Nacional San Lorenzo]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="86" width="555" height="112" uuid="1da4c427-9847-44a9-9037-1d370ba115f8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="114" width="100" height="20" uuid="260c8615-9765-4214-9b6c-00dd004f2e2d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="284" y="110" width="112" height="20" uuid="48322e8f-5c02-4560-a441-c2d8963cbcc7"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Número de la devolucion:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="144" width="100" height="20" uuid="bdc75c35-af81-423c-b22d-3f143848f366"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[CI:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="283" y="86" width="1" height="112" uuid="26fdf1c4-d3cd-4922-b9db-34b9bf9a7e7e"/>
+			</line>
+			<staticText>
+				<reportElement x="284" y="86" width="111" height="20" uuid="5b5610aa-3239-4533-a7bd-9766159eb627"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Bibliotecario:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="140" width="111" height="20" uuid="205ec022-293d-43a3-9637-12f960174af4"/>
+				<text><![CDATA[Motivo de la multa:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="90" width="100" height="20" uuid="0abbe60c-fb34-42d3-bf85-6f630dbe4d01"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Fecha de Emisión:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="396" y="110" width="100" height="20" uuid="23b02d06-ab49-4c2c-9836-6ff3076b186a"/>
+				<textFieldExpression><![CDATA[$F{iddevolucion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="90" width="116" height="20" uuid="ca418f50-4682-4c84-94bc-3bd3ba51a304"/>
+				<textFieldExpression><![CDATA[$F{fecha_devolucion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="114" width="116" height="20" uuid="dd32bd26-0bb9-4f82-acd1-e83ccbe77fa0"/>
+				<textFieldExpression><![CDATA[$F{nombre_persona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="144" width="100" height="20" uuid="097af50a-c07b-4c00-bafe-a6e39c580af7"/>
+				<textFieldExpression><![CDATA[$F{ci_persona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="396" y="86" width="100" height="20" uuid="a70d7ae5-4c6d-4f92-adfa-bbb14acf1d0d"/>
+				<textFieldExpression><![CDATA[$F{nombre_usu}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="284" y="164" width="100" height="20" uuid="cbd1cc18-d07f-4815-917e-d7f7a6397167"/>
+				<text><![CDATA[Monto de la multa:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="396" y="140" width="100" height="20" uuid="b94c8883-a2b3-40f2-af96-b454547dff17"/>
+				<textFieldExpression><![CDATA[$F{motivo_multa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="396" y="164" width="100" height="20" uuid="638d69da-98e4-4f59-91f9-b2021756f95d"/>
+				<textFieldExpression><![CDATA[$F{monto_multa}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="222" splitType="Stretch">
+			<rectangle>
+				<reportElement x="380" y="13" width="175" height="205" uuid="4de13898-d36f-40ac-8aae-b3acd68a703b"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="382" y="13" width="173" height="20" uuid="32952c53-4b3f-44ce-be72-6a39d6540c58"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="13" width="380" height="205" uuid="6a527fdd-62ae-4828-b0ba-ba2db5dc3bc8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="13" width="381" height="20" uuid="27394215-a794-4608-b0a5-2a1eb264c0e0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Libro]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="33" width="555" height="185" uuid="d9108fc8-332b-45d4-a10e-d49d70187698"/>
+				<subreportParameter name="cabdevoluciones">
+					<subreportParameterExpression><![CDATA[$P{cabdevoluciones}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reportedetalledevoluciones.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

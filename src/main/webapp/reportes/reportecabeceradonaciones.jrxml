@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2af74f7d-9ff6-49ed-b9b5-d53443572380">
+	<property name="ireport.zoom" value="1.1000000000000005"/>
+	<property name="ireport.x" value="1"/>
+	<property name="ireport.y" value="192"/>
+	<parameter name="cabdonacion" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/media/david/d/David Caballero TIC PENDRIVE/JAVAWEB/Bibsystem/src/main/webapp/reportes/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+    d.iddonacion, 
+    TO_CHAR(d.fecha_donacion, 'DD-MM-YYYY') AS fecha_donacion, 
+    p.nombre_persona, 
+    p.ci_persona, 
+    d.estado
+FROM 
+    public.donaciones d
+JOIN 
+    public.personas p ON d.idpersona = p.idpersona
+WHERE 
+    d.iddonacion = $P{cabdonacion};]]>
+	</queryString>
+	<field name="iddonacion" class="java.lang.Integer"/>
+	<field name="fecha_donacion" class="java.lang.String"/>
+	<field name="nombre_persona" class="java.lang.String"/>
+	<field name="ci_persona" class="java.lang.Integer"/>
+	<field name="estado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="185" splitType="Stretch">
+			<staticText>
+				<reportElement x="283" y="25" width="272" height="20" uuid="77cd7bc8-8012-4b8b-aa77-2649d2998fdc"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Colegio Nacional San Lorenzo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="0" width="272" height="25" uuid="f6fb83d6-4bae-4c73-ab54-ae47b435b029"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bibsystem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="284" y="45" width="272" height="20" uuid="efddeaf9-0d22-483d-835b-78fc371e31b0"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[San Lorenzo - Paraguay]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="89" width="555" height="85" uuid="551763de-bae5-4842-800e-597ce0c8324e"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="297" y="100" width="101" height="20" uuid="cf4122b2-5640-455d-9089-5e19a9f32426"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Número de la donacion:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="124" width="100" height="20" uuid="ba44118b-5338-4161-b0e3-2e71866979f2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="100" width="100" height="20" uuid="8c274c67-b2e8-46b5-b392-1c78d5d49084"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Fecha de Emisión:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="154" width="100" height="20" uuid="4f312cf7-2d98-4b39-8402-a502130a5812"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[CI:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="283" y="89" width="1" height="85" uuid="73873440-82b3-469a-8901-1c7f29b05aa7"/>
+			</line>
+			<textField>
+				<reportElement x="398" y="100" width="100" height="20" uuid="2a142bdd-e870-4a4b-8106-226021bff410"/>
+				<textFieldExpression><![CDATA[$F{iddonacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="100" width="111" height="20" uuid="5097198f-0acd-48bb-8feb-14da4a9ecbdc"/>
+				<textFieldExpression><![CDATA[$F{fecha_donacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="124" width="111" height="20" uuid="dce7c346-a54a-4cee-8267-26786100cb8a"/>
+				<textFieldExpression><![CDATA[$F{nombre_persona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="154" width="111" height="20" uuid="356f7743-83e2-497e-a978-11f27985665e"/>
+				<textFieldExpression><![CDATA[$F{ci_persona}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="224" splitType="Stretch">
+			<rectangle>
+				<reportElement x="109" y="10" width="272" height="205" uuid="0f91fcde-4bdf-466b-9d1e-40fbe798a797"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="10" y="10" width="100" height="205" uuid="d55c493c-7c32-4efe-aa13-b14602ba863b"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="10" width="100" height="20" uuid="3ba6cafc-f7ea-400c-90bd-f12a8cebdc25"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="381" y="10" width="172" height="205" uuid="243fb920-decd-4810-af5d-b667a9e271cd"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="109" y="10" width="272" height="20" uuid="87c972dd-fd1c-420a-9e6e-26f460a7d171"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Libro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="381" y="10" width="172" height="20" uuid="deffd8d3-5c06-4025-bd3d-9bf891f07a71"/>
+				<text><![CDATA[Fecha Final de la Donacion]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="10" y="30" width="543" height="185" uuid="3c21412f-6472-45c5-bc87-fc8b8977b94e"/>
+				<subreportParameter name="cabdonacion">
+					<subreportParameterExpression><![CDATA[$P{cabdonacion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reportedetalledonacion.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="160" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteReservas" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fcd20484-f345-4e25-aeb1-51cb4189329f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="240"/>
+	<parameter name="cabreserva" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/media/david/d/David Caballero TIC PENDRIVE/JAVAWEB/Bibsystem/src/main/webapp/reportes/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select idreserva, TO_CHAR(r.fechareserva, 'DD-MM-YYYY') AS fechareserva, per.nombre_persona, per.ci_persona, u.nombre_usu from reservas r, personas per, usuarios u where r.idpersona = per.idpersona AND r.idusuario = u.idusuario AND r.idreserva = $P{cabreserva}]]>
+	</queryString>
+	<field name="idreserva" class="java.lang.Integer"/>
+	<field name="fechareserva" class="java.lang.String"/>
+	<field name="nombre_persona" class="java.lang.String"/>
+	<field name="ci_persona" class="java.lang.Integer"/>
+	<field name="nombre_usu" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="205" splitType="Stretch">
+			<staticText>
+				<reportElement x="282" y="1" width="272" height="25" uuid="abef7487-c297-4c82-9ada-2eb9558f4c68"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bibsystem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="26" width="272" height="20" uuid="28ee07f1-2100-40f3-9a30-db71bb0c9c25"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Colegio Nacional San Lorenzo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="46" width="272" height="20" uuid="4a59bb56-9623-478b-913d-1678ebd9d382"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[San Lorenzo - Paraguay]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="119" width="150" height="20" uuid="2b99120c-84fb-4ff2-93ea-44391e264a6f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Fecha de Emisión:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="143" width="150" height="20" uuid="4a4fa5ea-d6d9-4617-8501-c1660c513fa3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="173" width="150" height="20" uuid="886eb2a5-984d-4534-8d98-794b0b2e5023"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[CI:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="160" y="119" width="150" height="20" uuid="340fafc7-cacb-4a31-ade4-a82c009680f7"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechareserva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="143" width="150" height="20" uuid="3017bc01-70c5-49f5-95d1-29c2038ad1cf"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_persona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="173" width="150" height="20" uuid="6238b130-5b4c-45bc-9df4-32ffeaee7592"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ci_persona}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="282" y="119" width="100" height="20" uuid="9f6e6c14-5999-4a91-ad04-357ae526d1de"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Bibliotecario:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="417" y="119" width="137" height="20" uuid="d2ced4a3-b259-4a30-81de-fc9dc6ecaf31"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_usu}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="108" width="553" height="1" uuid="84f5f51b-6b76-4eb3-b93d-060a8b522240"/>
+			</line>
+			<line>
+				<reportElement x="1" y="193" width="553" height="2" uuid="4f14af82-c6f4-4c1e-ae5f-5347ed6e483d"/>
+			</line>
+			<line>
+				<reportElement x="280" y="108" width="1" height="85" uuid="7401a801-e5b4-4ea5-b8e6-84a118dc31ca"/>
+			</line>
+			<line>
+				<reportElement x="554" y="108" width="1" height="87" uuid="d82685da-1d79-41e7-90dd-439fa2eb26ea"/>
+			</line>
+			<line>
+				<reportElement x="0" y="108" width="1" height="85" uuid="26802d5b-0fec-4931-bcd1-1af09d443a55"/>
+			</line>
+			<staticText>
+				<reportElement x="281" y="153" width="150" height="20" uuid="240576e8-dd72-4e64-9908-82195f554b06"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Número de la reserva:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="417" y="153" width="137" height="20" uuid="7ab24db3-ab9d-4624-a3d2-a0094bc0d44e"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idreserva}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="225" splitType="Stretch">
+			<rectangle>
+				<reportElement x="11" y="10" width="100" height="205" uuid="af6be2c9-d273-45bc-a136-37d0101f300c"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="110" y="10" width="272" height="205" uuid="7f368064-0e82-43be-9ea5-7285f3c7a1ca"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="382" y="10" width="172" height="205" uuid="3b59d366-c295-4c87-9c36-ffcda0f26cf8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="11" y="10" width="100" height="20" uuid="df929424-5909-4730-9740-757e94f9a243"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="10" width="272" height="20" uuid="eb7feb04-a573-4e4c-9ce0-0d47dd551c33"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Libro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="382" y="10" width="172" height="20" uuid="98d716ff-24d5-4744-a805-1fc7c9a162ad"/>
+				<text><![CDATA[Fecha Final de la Reserva]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="11" y="30" width="543" height="185" uuid="612e6df5-4102-404b-8f04-d05b2d143d3e"/>
+				<subreportParameter name="cabreserva">
+					<subreportParameterExpression><![CDATA[$P{cabreserva}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reportedetallereserva.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="211" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>
