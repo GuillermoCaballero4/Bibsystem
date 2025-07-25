@@ -3,22 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Página de Prueba</title>
+    <title>DG-Desarrollos | Contacto</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             text-align: center;
-            margin-top: 50px;
-            background-color: #f0f8ff;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
         }
         h1 {
-            color: #ff6b6b;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #2980b9;
         }
     </style>
 </head>
 <body>
-    <h1>¡Funciona! �</h1>
-    <p>GitHub Pages ahora muestra esta página correctamente.</p>
-    <p><small>(Solo era una prueba, pero quedó profesional 😎)</small></p>
+    <div class="container">
+        <h1>¡Bienvenido a DG-Desarrollos!</h1>
+        <p>¿Necesitas un producto o servicio personalizado? Contáctanos ahora mismo.</p>
+        <a href="mailto:davidgillermo84@gmail.com?subject=Necesito%20este%20producto&body=¡Hola!%20Estoy%20interesado%20en%20tu%20servicio.%20Por%20favor,%20envíame%20más%20información." class="btn">Contáctame por Gmail</a>
+    </div>
 </body>
 </html>
