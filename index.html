@@ -1,58 +1,283 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DG-Desarrollos | Contacto</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            width: 90%;
-        }
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-        p {
-            color: #7f8c8d;
-            margin-bottom: 30px;
-            font-size: 18px;
-        }
-        .btn {
-            display: inline-block;
-            background-color: #3498db;
-            color: white;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        .btn:hover {
-            background-color: #2980b9;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GD Desarrollos | Recursos y herramientas gratis para informáticos(Esta pagina aun continua en desarrollo)</title>
+  <meta name="description" content="Mini portal de recursos gratuitos para informáticos: herramientas, guías, cursos y ofertas. Actualizado los sábados. Sin humo, solo enlaces útiles." />
+  <meta name="robots" content="index,follow" />
+  <!-- Cuando actives SSL, cambia a https -->
+  <link rel="canonical" href="http://gd-desarrollos.online/" />
+
+  <!-- Open Graph / Compartir en redes -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="GD Desarrollos" />
+  <meta property="og:title" content="GD Desarrollos | Recursos y herramientas gratis para informáticos" />
+  <meta property="og:description" content="Herramientas, guías y cursos gratuitos. Plantilla ligera, rápida y lista para monetizar." />
+  <meta property="og:url" content="http://gd-desarrollos.online/" />
+  <!-- Coloca una imagen 1200x630 en /img/og.jpg cuando puedas -->
+  <meta property="og:image" content="http://gd-desarrollos.online/img/og.jpg" />
+
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --card: #111827;
+      --muted: #94a3b8;
+      --txt: #e5e7eb;
+      --accent: #22c55e;
+      --accent-2: #38bdf8;
+      --warn: #f59e0b;
+      --br: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --max: 1100px;
+    }
+    *{box-sizing: border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;line-height:1.6}
+    a{color:var(--accent-2);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:var(--max);margin:auto;padding:24px}
+    header{position:sticky;top:0;background:rgba(11,15,23,.75);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid #1f2937;z-index:20}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.3px}
+    .brand-badge{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#16a34a)}
+    .brand-badge span{font-weight:800;color:#04120a}
+    .menu{display:flex;gap:14px;flex-wrap:wrap}
+    .menu a{padding:8px 10px;border-radius:10px;color:var(--muted)}
+    .menu a:hover{background:#0f172a;color:var(--txt)}
+
+    .hero{display:grid;gap:18px;padding:42px 0}
+    .title{font-size:clamp(28px,4vw,42px);line-height:1.15;margin:0}
+    .subtitle{color:var(--muted);max-width:70ch}
+    .badges{display:flex;gap:10px;flex-wrap:wrap}
+    .badge{font-size:14px;padding:6px 10px;border-radius:999px;background:#0f172a;border:1px solid #1f2937;color:var(--muted)}
+    .cta{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-block;padding:12px 16px;border-radius:12px;border:1px solid #1f2937;background:#0f172a;color:#e5e7eb;box-shadow:var(--shadow)}
+    .btn:hover{transform:translateY(-1px)}
+    .btn.primary{background:linear-gradient(135deg,var(--accent),#16a34a);color:#052012;border-color:transparent}
+
+    .grid{display:grid;grid-template-columns:repeat(1,minmax(0,1fr));gap:16px}
+    @media (min-width:700px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media (min-width:1000px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+    .card{background:var(--card);border:1px solid #1f2937;border-radius:var(--br);padding:18px;box-shadow:var(--shadow)}
+    .card h3{margin-top:0}
+    .card p{color:var(--muted)}
+    .section{padding:20px 0}
+    .section h2{margin:0 0 10px;font-size:clamp(22px,3vw,28px)}
+    .hint{font-size:14px;color:var(--muted)}
+
+    .list{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+    .list li{display:flex;gap:10px;align-items:flex-start;padding:10px;border:1px dashed #1f2937;border-radius:12px}
+    .pill{font-size:12px;padding:4px 8px;border-radius:999px;background:#0b1220;border:1px solid #1e293b;color:#9ca3af}
+
+    .ad-slot{display:grid;place-items:center;min-height:90px;border:2px dashed #334155;border-radius:var(--br);color:#94a3b8;background:repeating-linear-gradient(45deg,rgba(51,65,85,.2),rgba(51,65,85,.2) 10px,transparent 10px,transparent 20px)}
+    .ad-slot small{opacity:.9}
+
+    footer{margin-top:40px;border-top:1px solid #1f2937;background:#0b0f17}
+    .footer-grid{display:grid;gap:14px}
+    @media (min-width:800px){.footer-grid{grid-template-columns:2fr 1fr 1fr}}
+    .copyright{color:#64748b;font-size:14px}
+    .contact a{word-break:break-all}
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>¡Bienvenido a DG-Desarrollos!</h1>
-        <p>¿Necesitas un producto o servicio personalizado? Contáctanos ahora mismo.</p>
-        <a href="mailto:davidgillermo84@gmail.com?subject=Necesito%20este%20producto&body=¡Hola!%20Estoy%20interesado%20en%20tu%20servicio.%20Por%20favor,%20envíame%20más%20información." class="btn">Contáctame por Gmail</a>
+  <header>
+    <div class="container nav" role="navigation" aria-label="Principal">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true"><span>GD</span></div>
+        <span>GD Desarrollos</span>
+      </div>
+      <nav class="menu">
+        <a href="#recursos">Recursos</a>
+        <a href="#herramientas">Herramientas</a>
+        <a href="#cursos">Cursos</a>
+        <a href="#ofertas">Ofertas</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
     </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1 class="title">Recursos y herramientas <span style="color:var(--accent)">GRATIS</span> para informáticos</h1>
+      <p class="subtitle">Mini portal ligero y sin vueltas: enlaces útiles que realmente sirven. Actualizado los sábados. Hecho con HTML + CSS para cargar <strong>rápido</strong> incluso con conexiones lentas.</p>
+      <div class="badges">
+        <span class="badge">Sin registro</span>
+        <span class="badge">Amigable para móviles</span>
+        <span class="badge">Listo para monetizar</span>
+      </div>
+      <div class="cta">
+        <a class="btn primary" href="#recursos">Ver recursos</a>
+        <a class="btn" href="#monetizacion">¿Cómo se monetiza?</a>
+      </div>
+    </section>
+
+    <div class="ad-slot" aria-label="Espacio para anuncio">
+      <!-- Reemplaza este bloque por el código de tu red de anuncios (AdSense u otra) cuando lo actives. -->
+      <small>Espacio publicitario 728×90 / 300×250</small>
+    </div>
+
+    <section id="recursos" class="section">
+      <h2>Recursos rápidos</h2>
+      <p class="hint">Añade 3–5 enlaces cada sábado. Prioriza utilidades gratuitas y muy buscadas.</p>
+      <ul class="list">
+        <li>
+          <span class="pill">Descarga</span>
+          <div>
+            <strong>Visual Studio Code</strong><br />
+            <a href="#" rel="nofollow noopener">Página oficial</a>
+            <span class="hint"> – Editor ligero, ideal para PCs modestas.</span>
+          </div>
+        </li>
+        <li>
+          <span class="pill">Guía</span>
+          <div>
+            <strong>Comandos básicos de Git</strong><br />
+            <a href="#" rel="nofollow noopener">Artículo resumido</a>
+            <span class="hint"> – Copia/pega y resuelve el 80% de tu día a día.</span>
+          </div>
+        </li>
+        <li>
+          <span class="pill">Plantilla</span>
+          <div>
+            <strong>Estructura HTML base</strong><br />
+            <a href="#" rel="nofollow noopener">Descargar</a>
+            <span class="hint"> – Usa esta misma plantilla para nuevas páginas.</span>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="herramientas" class="section">
+      <h2>Herramientas útiles (sin instalar)</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Generador de contraseñas</h3>
+          <p>Enlaza a un generador confiable. Sin scripts aquí para mantenerlo 100% HTML + CSS.</p>
+          <a href="#" class="btn">Ir a la herramienta</a>
+        </article>
+        <article class="card">
+          <h3>Minificador de CSS/JS online</h3>
+          <p>Útil para optimizar páginas estáticas y mejorar el SEO técnico.</p>
+          <a href="#" class="btn">Abrir minificador</a>
+        </article>
+        <article class="card">
+          <h3>Validador W3C</h3>
+          <p>Chequea que tu HTML/CSS sea válido y accesible.</p>
+          <a href="https://validator.w3.org/" class="btn" rel="noopener" target="_blank">Validar ahora</a>
+        </article>
+      </div>
+    </section>
+
+    <div class="ad-slot" aria-label="Espacio para anuncio">
+      <small>Tu anuncio aquí</small>
+    </div>
+
+    <section id="cursos" class="section">
+      <h2>Cursos y libros recomendados</h2>
+      <p class="hint">Coloca aquí enlaces de afiliado (Amazon, Mercado Libre, Udemy, etc.). Etiqueta los enlaces patrocinados con <em>rel="sponsored"</em>.</p>
+      <div class="grid">
+        <article class="card">
+          <h3>Curso de HTML &amp; CSS desde cero</h3>
+          <p>Ideal para empezar rápido. Busca una opción con buenas reseñas y precio bajo.</p>
+          <a href="#" class="btn" rel="sponsored noopener">Ver curso (afiliado)</a>
+        </article>
+        <article class="card">
+          <h3>Git y GitHub para principiantes</h3>
+          <p>Aprende flujo real de trabajo en menos de una semana.</p>
+          <a href="#" class="btn" rel="sponsored noopener">Ver curso (afiliado)</a>
+        </article>
+        <article class="card">
+          <h3>Libro: Algoritmos "para mortales"</h3>
+          <p>Recomendación pensada para estudiantes. Versión eBook barata.</p>
+          <a href="#" class="btn" rel="sponsored noopener">Ver libro (afiliado)</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="ofertas" class="section">
+      <h2>Ofertas y descuentos</h2>
+      <p class="hint">Afiliados/Patrocinios: hardware básico, periféricos, hosting, dominios. Mantén la transparencia.</p>
+      <ul class="list">
+        <li>
+          <span class="pill">Hosting</span>
+          <div>
+            <strong>Plan económico para webs estáticas</strong><br />
+            <a href="#" rel="sponsored noopener">Ver oferta</a>
+            <span class="hint"> – Incluye SSL y migración fácil.</span>
+          </div>
+        </li>
+        <li>
+          <span class="pill">Periféricos</span>
+          <div>
+            <strong>Teclado + mouse económicos</strong><br />
+            <a href="#" rel="sponsored noopener">Comprar</a>
+            <span class="hint"> – Buena relación calidad/precio.</span>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="monetizacion" class="section">
+      <h2>¿Cómo monetiza esta web?</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>1) Publicidad</h3>
+          <p>Solicita una red de anuncios (p. ej., AdSense). Reemplaza los <em>ad-slot</em> por su código. Empieza a aplicar cuando llegues a 500–1000 visitas/mes.</p>
+        </article>
+        <article class="card">
+          <h3>2) Afiliados</h3>
+          <p>En los botones de cursos/libros/ofertas usa tus enlaces de afiliado y marca los links con <code>rel="sponsored"</code>.</p>
+        </article>
+        <article class="card">
+          <h3>3) Servicios</h3>
+          <p>Ofrece soporte técnico o micro-servicios en la sección Contacto (auditoría de PC, instalación de SO, páginas estáticas).</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contacto" class="section">
+      <h2>Contacto</h2>
+      <div class="grid">
+        <article class="card contact">
+          <h3>¿Quieres patrocinar o agregar un recurso?</h3>
+          <p>Escribe un correo y respondemos el sábado:</p>
+          <p><a href="mailto:contacto@gd-desarrollos.online">contacto@gd-desarrollos.online</a></p>
+          <p class="hint">También puedes proponer enlaces útiles para la comunidad.</p>
+        </article>
+        <article class="card">
+          <h3>Transparencia</h3>
+          <p>Algunos enlaces pueden ser de afiliado. Eso no cambia nuestra selección: priorizamos utilidad y calidad.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <strong>GD Desarrollos</strong>
+        <p class="hint">Mini portal de recursos para informáticos. Actualizado cada sábado.</p>
+      </div>
+      <div>
+        <h3 style="margin-top:0">Enlaces</h3>
+        <ul class="list">
+          <li><a href="#recursos">Recursos</a></li>
+          <li><a href="#herramientas">Herramientas</a></li>
+          <li><a href="#cursos">Cursos</a></li>
+          <li><a href="#ofertas">Ofertas</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="margin-top:0">Legal</h3>
+        <ul class="list">
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><a href="/sitemap.xml">sitemap.xml</a></li>
+          <li><a href="#" aria-disabled="true">Política de privacidad</a></li>
+        </ul>
+      </div>
+      <div class="copyright">© <span id="y">2025</span> GD Desarrollos. Hecho con HTML + CSS.</div>
+    </div>
+  </footer>
 </body>
 </html>
