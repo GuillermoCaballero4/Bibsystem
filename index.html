@@ -1,466 +1,394 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GD Desarrollos | Recursos y herramientas gratis para informáticos</title>
-  <meta name="description" content="Mini portal de recursos gratuitos para informáticos: herramientas, guías, cursos y ofertas. Actualizado los sábados. Sin humo, solo enlaces útiles." />
-  <meta name="robots" content="index,follow" />
-  <!-- Cuando actives SSL, cambia a https -->
-  <link rel="canonical" href="http://gd-desarrollos.online/" />
-
-  <!-- Open Graph / Compartir en redes -->
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="GD Desarrollos" />
-  <meta property="og:title" content="GD Desarrollos | Recursos y herramientas gratis para informáticos" />
-  <meta property="og:description" content="Herramientas, guías y cursos gratuitos. Plantilla ligera, rápida y lista para monetizar." />
-  <meta property="og:url" content="http://gd-desarrollos.online/" />
-  <!-- Coloca una imagen 1200x630 en /img/og.jpg cuando puedas -->
-  <meta property="og:image" content="http://gd-desarrollos.online/img/og.jpg" />
-
-  <style>
-    :root{
-      --bg: #0b0f17;
-      --card: #111827;
-      --muted: #94a3b8;
-      --txt: #e5e7eb;
-      --accent: #22c55e;
-      --accent-2: #38bdf8;
-      --warn: #f59e0b;
-      --br: 16px;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --max: 1100px;
-    }
-    *{box-sizing: border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;line-height:1.6}
-    a{color:var(--accent-2);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .container{max-width:var(--max);margin:auto;padding:24px}
-    header{position:sticky;top:0;background:rgba(11,15,23,.75);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid #1f2937;z-index:20}
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.3px}
-    .brand-badge{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#16a34a)}
-    .brand-badge span{font-weight:800;color:#04120a}
-    .menu{display:flex;gap:14px;flex-wrap:wrap}
-    .menu a{padding:8px 10px;border-radius:10px;color:var(--muted)}
-    .menu a:hover{background:#0f172a;color:var(--txt)}
-
-    .hero{display:grid;gap:18px;padding:42px 0}
-    .title{font-size:clamp(28px,4vw,42px);line-height:1.15;margin:0}
-    .subtitle{color:var(--muted);max-width:70ch}
-    .badges{display:flex;gap:10px;flex-wrap:wrap}
-    .badge{font-size:14px;padding:6px 10px;border-radius:999px;background:#0f172a;border:1px solid #1f2937;color:var(--muted)}
-    .cta{display:flex;gap:12px;flex-wrap:wrap}
-    .btn{display:inline-block;padding:12px 16px;border-radius:12px;border:1px solid #1f2937;background:#0f172a;color:#e5e7eb;box-shadow:var(--shadow);transition:all 0.3s ease;cursor:pointer}
-    .btn:hover{transform:translateY(-1px)}
-    .btn.primary{background:linear-gradient(135deg,var(--accent),#16a34a);color:#052012;border-color:transparent}
-
-    .grid{display:grid;grid-template-columns:repeat(1,minmax(0,1fr));gap:16px}
-    @media (min-width:700px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media (min-width:1000px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-
-    .card{background:var(--card);border:1px solid #1f2937;border-radius:var(--br);padding:18px;box-shadow:var(--shadow)}
-    .card h3{margin-top:0}
-    .card p{color:var(--muted)}
-    .section{padding:20px 0}
-    .section h2{margin:0 0 10px;font-size:clamp(22px,3vw,28px)}
-    .hint{font-size:14px;color:var(--muted)}
-
-    .list{list-style:none;padding:0;margin:0;display:grid;gap:10px}
-    .list li{display:flex;gap:10px;align-items:flex-start;padding:10px;border:1px dashed #1f2937;border-radius:12px}
-    .pill{font-size:12px;padding:4px 8px;border-radius:999px;background:#0b1220;border:1px solid #1e293b;color:#9ca3af}
-
-    .ad-slot{display:grid;place-items:center;min-height:90px;border:2px dashed #334155;border-radius:var(--br);color:#94a3b8;background:repeating-linear-gradient(45deg,rgba(51,65,85,.2),rgba(51,65,85,.2) 10px,transparent 10px,transparent 20px)}
-    .ad-slot small{opacity:.9}
-
-    footer{margin-top:40px;border-top:1px solid #1f2937;background:#0b0f17}
-    .footer-grid{display:grid;gap:14px}
-    @media (min-width:800px){.footer-grid{grid-template-columns:2fr 1fr 1fr}}
-    .copyright{color:#64748b;font-size:14px}
-    .contact a{word-break:break-all}
-    
-    /* Nuevos estilos */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
-    }
-    
-    .portfolio-item {
-      border-radius: var(--br);
-      overflow: hidden;
-      transition: transform 0.3s ease;
-      border: 1px solid #1f2937;
-    }
-    
-    .portfolio-item:hover {
-      transform: translateY(-5px);
-    }
-    
-    .portfolio-img {
-      width: 100%;
-      height: 180px;
-      background-color: #1a2233;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--muted);
-    }
-    
-    .portfolio-info {
-      padding: 15px;
-      background: var(--card);
-    }
-    
-    form {
-      display: grid;
-      gap: 15px;
-      margin-top: 20px;
-    }
-    
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-    
-    label {
-      font-size: 14px;
-      color: var(--muted);
-    }
-    
-    input, textarea, select {
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid #1f2937;
-      background: #0f172a;
-      color: var(--txt);
-      font-family: inherit;
-    }
-    
-    .converter {
-      background: var(--card);
-      padding: 20px;
-      border-radius: var(--br);
-      margin-top: 20px;
-    }
-    
-    .converter-form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-    
-    @media (min-width: 600px) {
-      .converter-form {
-        flex-direction: row;
-      }
-      
-      .converter-form input {
-        flex: 1;
-      }
-    }
-    
-    .loading {
-      display: none;
-      text-align: center;
-      margin: 20px 0;
-    }
-    
-    .spinner {
-      border: 3px solid #1f2937;
-      border-top: 3px solid var(--accent);
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      animation: spin 1s linear infinite;
-      margin: 0 auto;
-    }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    .result {
-      display: none;
-      text-align: center;
-      margin-top: 20px;
-      padding: 15px;
-      background: #0f172a;
-      border-radius: var(--br);
-      border: 1px dashed var(--accent);
-    }
-    
-    .notification {
-      padding: 15px;
-      border-radius: var(--br);
-      margin: 15px 0;
-      background: #0f172a;
-      border-left: 4px solid var(--accent);
-    }
-    
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--txt);
-      font-size: 24px;
-      cursor: pointer;
-    }
-    
-    @media (max-width: 768px) {
-      .menu {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--bg);
-        padding: 15px;
-        border-top: 1px solid #1f2937;
-      }
-      
-      .menu.show {
-        display: flex;
-      }
-      
-      .menu-toggle {
-        display: block;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GD Desarrollos | Recursos y herramientas gratis para informáticos</title>
+    <meta name="description" content="Mini portal de recursos gratuitos para informáticos: herramientas, guías, cursos y ofertas. Actualizado los sábados. Sin humo, solo enlaces útiles.">
+    <style>
+        :root {
+            --bg: #0b0f17;
+            --card: #111827;
+            --muted: #94a3b8;
+            --txt: #e5e7eb;
+            --accent: #22c55e;
+            --accent-2: #38bdf8;
+            --warn: #f59e0b;
+            --br: 16px;
+            --shadow: 0 10px 30px rgba(0,0,0,.35);
+            --max: 1100px;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: var(--bg);
+            color: var(--txt);
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            background: rgba(11,15,23,.75);
+            backdrop-filter: saturate(1.2) blur(8px);
+            border-bottom: 1px solid #1f2937;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+        }
+        .brand-badge {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #16a34a);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: #04120a;
+        }
+        .menu {
+            display: flex;
+            gap: 20px;
+        }
+        .menu a {
+            color: var(--muted);
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .menu a:hover {
+            background: #0f172a;
+            color: var(--txt);
+        }
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+        }
+        .title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--accent-2), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            color: var(--muted);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, var(--accent), #16a34a);
+            color: #052012;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+        .section {
+            padding: 50px 0;
+        }
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--accent-2);
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .portfolio-item {
+            background: var(--card);
+            border-radius: var(--br);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            border: 2px dashed var(--muted);
+        }
+        .portfolio-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--accent-2);
+        }
+        .request-form {
+            background: var(--card);
+            padding: 30px;
+            border-radius: var(--br);
+            box-shadow: var(--shadow);
+            margin-top: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--muted);
+        }
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #1f2937;
+            background: #0f172a;
+            color: var(--txt);
+        }
+        textarea.form-input {
+            min-height: 120px;
+            resize: vertical;
+        }
+        footer {
+            background: #0b0f17;
+            border-top: 1px solid #1f2937;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .footer-contact a {
+            color: var(--accent-2);
+            text-decoration: none;
+        }
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+        .notification {
+            padding: 15px;
+            background: #1e293b;
+            border-left: 4px solid var(--warn);
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        .tools-section {
+            background: var(--card);
+            padding: 30px;
+            border-radius: var(--br);
+            box-shadow: var(--shadow);
+            margin-top: 30px;
+        }
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .tool-card {
+            background: #0f172a;
+            padding: 20px;
+            border-radius: var(--br);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+        .tool-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="container nav" role="navigation" aria-label="Principal">
-      <div class="brand">
-        <div class="brand-badge" aria-hidden="true"><span>GD</span></div>
-        <span>GD Desarrollos</span>
-      </div>
-      
-      <button class="menu-toggle" id="menuToggle">☰</button>
-      
-      <nav class="menu" id="mainMenu">
-        <a href="#inicio">Inicio</a>
-        <a href="#portfolio">Portafolio</a>
-        <a href="#solicitar">Solicitar</a>
-        <a href="#herramientas">Herramientas</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-    </div>
-  </header>
+    <header>
+        <div class="container">
+            <div class="nav">
+                <div class="brand">
+                    <div class="brand-badge">GD</div>
+                    <span>GD Desarrollos</span>
+                </div>
+                <nav class="menu">
+                    <a href="#portfolio">Portafolio</a>
+                    <a href="#request">Solicitar</a>
+                    <a href="#tools">Herramientas</a>
+                    <a href="#contact">Contacto</a>
+                </nav>
+            </div>
+        </div>
+    </header>
 
-  <main class="container">
-    <section id="inicio" class="hero">
-      <h1 class="title">Recursos y herramientas para informáticos</h1>
-      <p class="subtitle">Ofrecemos soluciones digitales, diseño gráfico y herramientas gratuitas para potenciar tu trabajo y proyectos. Todo en un solo lugar, actualizado regularmente.</p>
-      
-      <div class="badges">
-        <span class="badge">Desarrollo Web</span>
-        <span class="badge">Diseño Gráfico</span>
-        <span class="badge">Herramientas Gratuitas</span>
-        <span class="badge">Recursos Informáticos</span>
-      </div>
-      
-      <div class="cta">
-        <a href="#solicitar" class="btn primary">Solicitar un servicio</a>
-        <a href="#herramientas" class="btn">Explorar herramientas</a>
-      </div>
-    </section>
-    
-    <div class="notification">
-      <strong>Nota:</strong> Esta página se encuentra en desarrollo activo. Próximamente más recursos y funcionalidades.
-    </div>
-    
-    <section id="portfolio" class="section">
-      <h2>Portafolio de Diseño de Flyers</h2>
-      <p class="hint">Algunos ejemplos de nuestro trabajo en diseño gráfico y publicitario(aun no tenemos pero estaran proximamente).</p>
-      
-     <!-- <div class="portfolio-grid">
-        <div class="portfolio-item">
-          <div class="portfolio-img">Flyer Ejemplo 1</div>
-          <div class="portfolio-info">
-            <h3>Flyer Promocional</h3>
-            <p>Diseño para evento tecnológico</p>
-          </div>
-        </div>
-        
-        <div class="portfolio-item">
-          <div class="portfolio-img">Flyer Ejemplo 2</div>
-          <div class="portfolio-info">
-            <h3>Campaña Publicitaria</h3>
-            <p>Material para redes sociales</p>
-          </div>
-        </div>
-        
-        <div class="portfolio-item">
-          <div class="portfolio-img">Flyer Ejemplo 3</div>
-          <div class="portfolio-info">
-            <h3>Diseño Corporativo</h3>
-            <p>Identidad visual para empresa</p>
-          </div>
-        </div>
-        
-        <div class="portfolio-item">
-          <div class="portfolio-img">Flyer Ejemplo 4</div>
-          <div class="portfolio-info">
-            <h3>Material Educativo</h3>
-            <p>Diseño instructivo y claro</p>
-          </div>
-        </div>
-      </div>-->
-    </section>
-    
-    <section id="solicitar" class="section">
-      <h2>Solicitar Servicios</h2>
-      <p class="hint">¿Necesitas un diseño personalizado o desarrollo web? Completa el formulario y nos pondremos en contacto contigo.</p>
-      
-      <form id="requestForm">
-        <div class="form-group">
-          <label for="name">Nombre completo</label>
-          <input type="text" id="name" required placeholder="Tu nombre">
-        </div>
-        
-        <div class="form-group">
-          <label for="email">Correo electrónico</label>
-          <input type="email" id="email" required placeholder="tu@email.com">
-        </div>
-        
-        <div class="form-group">
-          <label for="service">Tipo de servicio</label>
-          <select id="service" required>
-            <option value="">Selecciona una opción</option>
-            <option value="flyer">Diseño de Flyer</option>
-            <option value="web">Desarrollo Web</option>
-            <option value="logo">Diseño de Logo</option>
-            <option value="other">Otro servicio</option>
-          </select>
-        </div>
-        
-        <div class="form-group">
-          <label for="details">Detalles de tu solicitud</label>
-          <textarea id="details" rows="4" required placeholder="Describe lo que necesitas..."></textarea>
-        </div>
-        
-        <button type="submit" class="btn primary">Enviar solicitud</button>
-      </form>
-    </section>
-    
-    <section id="herramientas" class="section">
-      <h2>Herramientas Gratuitas</h2>
-      <p class="hint">Conversor de YouTube a MP3 - Funcionalidad directamente en tu navegador.</p>
-      
-      <div class="converter">
-        <div class="converter-form">
-          <input type="text" id="youtubeUrl" placeholder="Pega aquí la URL de YouTube" required>
-          <button id="convertBtn" class="btn primary">Convertir a MP3</button>
-        </div>
-        
-        <div class="loading" id="loadingIndicator">
-          <div class="spinner"></div>
-          <p>Convirtiendo, por favor espera...</p>
-        </div>
-        
-        <div class="result" id="conversionResult">
-          <h3>¡Conversión completada!</h3>
-          <a href="#" id="downloadLink" class="btn primary">Descargar MP3</a>
-        </div>
-      </div>
-    </section>
-    
-    <section id="contacto" class="section">
-      <h2>Contacto</h2>
-      <p class="hint">Ponte en contacto con nosotros para más información sobre nuestros servicios.</p>
-      
-      <div class="card">
-        <p>Puedes escribirnos directamente a nuestro correo electrónico:</p>
-        <p class="contact"><strong>Email:</strong> <a href="mailto:davidgillermo84@gmail.com">davidgillermo84@gmail.com</a></p>
-        <p>Te responderemos a la brevedad posible.</p>
-      </div>
-    </section>
-  </main>
+    <main class="container">
+        <section class="hero">
+            <h1 class="title">Recursos y herramientas para informáticos</h1>
+            <p class="subtitle">Ofrecemos soluciones digitales, diseño gráfico y recursos gratuitos para potenciar tu trabajo y proyectos.</p>
+            <a href="#request" class="btn">Solicitar un servicio</a>
+        </section>
 
-  <footer>
-    <div class="container footer-grid">
-      <div>
-        <div class="brand">
-          <div class="brand-badge" aria-hidden="true"><span>GD</span></div>
-          <span>GD Desarrollos</span>
+        <div class="notification">
+            <strong>Nota:</strong> Esta página se encuentra en desarrollo activo. Próximamente más recursos y funcionalidades.
         </div>
-        <p class="copyright">Ofreciendo soluciones digitales y recursos para informáticos. Actualizaciones regulares cada semana.</p>
-      </div>
-      
-      <div>
-        <h3>Enlaces rápidos</h3>
-        <ul class="list">
-          <li><a href="#inicio">Inicio</a></li>
-          <li><a href="#portfolio">Portafolio</a></li>
-          <li><a href="#herramientas">Herramientas</a></li>
-        </ul>
-      </div>
-      
-      <div>
-        <h3>Contacto</h3>
-        <ul class="list">
-          <li><a href="mailto:davidgillermo84@gmail.com">davidgillermo84@gmail.com</a></li>
-        </ul>
-      </div>
-    </div>
-    
-    <div class="container">
-      <p class="copyright">© 2025 GD Desarrollos. Esta página se encuentra en desarrollo.</p>
-    </div>
-  </footer>
 
-  <script>
-    // Menú móvil
-    document.getElementById('menuToggle').addEventListener('click', function() {
-      document.getElementById('mainMenu').classList.toggle('show');
-    });
-    
-    // Formulario de solicitud
-    document.getElementById('requestForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('¡Gracias por tu solicitud! Te contactaremos pronto a través del correo electrónico proporcionado.');
-      this.reset();
-    });
-    
-    // Conversor de YouTube a MP3 (simulación)
-    document.getElementById('convertBtn').addEventListener('click', function() {
-      const url = document.getElementById('youtubeUrl').value;
-      
-      if (!url) {
-        alert('Por favor, ingresa una URL de YouTube válida.');
-        return;
-      }
-      
-      // Expresión regular para validar URL de YouTube
-      const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/;
-      
-      if (!youtubeRegex.test(url)) {
-        alert('Por favor, ingresa una URL válida de YouTube.');
-        return;
-      }
-      
-      // Mostrar indicador de carga
-      document.getElementById('loadingIndicator').style.display = 'block';
-      document.getElementById('conversionResult').style.display = 'none';
-      
-      // Simular proceso de conversión (en un caso real, aquí se conectaría con una API)
-      setTimeout(function() {
-        // Ocultar indicador de carga
-        document.getElementById('loadingIndicator').style.display = 'none';
-        
-        // Mostrar resultado
-        document.getElementById('conversionResult').style.display = 'block';
-        
-        // En un caso real, aquí se establecería el enlace de descarga real
-        document.getElementById('downloadLink').href = "#";
-      }, 3000);
-    });
-  </script>
+        <section id="portfolio" class="section">
+            <h2 class="section-title">Portafolio de Diseño de Flyers</h2>
+            <p>Actualmente no hay trabajos en nuestro portafolio. ¡Anímate a ser el primero!</p>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-icon">🎨</div>
+                    <h3>¡Sé el primero!</h3>
+                    <p>Aún no tenemos trabajos en nuestro portafolio. Solicita un diseño y conviértete en nuestro primer caso de éxito.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="request" class="section">
+            <h2 class="section-title">Solicitar Servicios</h2>
+            <p>¿Necesitas un diseño personalizado o desarrollo web? Completa el formulario y nos pondremos en contacto contigo.</p>
+            
+            <div class="request-form">
+                <form id="serviceRequestForm">
+                    <div class="form-group">
+                        <label class="form-label" for="name">Nombre completo</label>
+                        <input type="text" id="name" class="form-input" required placeholder="Tu nombre">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="email">Correo electrónico</label>
+                        <input type="email" id="email" class="form-input" required placeholder="tu@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="service">Tipo de servicio</label>
+                        <select id="service" class="form-input" required>
+                            <option value="">Selecciona una opción</option>
+                            <option value="flyer">Diseño de Flyer</option>
+                            <option value="web">Desarrollo Web</option>
+                            <option value="logo">Diseño de Logo</option>
+                            <option value="other">Otro servicio</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="details">Detalles de tu solicitud</label>
+                        <textarea id="details" class="form-input" required placeholder="Describe lo que necesitas..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Enviar solicitud</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="tools" class="section">
+            <h2 class="section-title">Herramientas Gratuitas</h2>
+            <p>Próximamente dispondremos de herramientas útiles para informáticos y diseñadores.</p>
+            
+            <div class="tools-section">
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">🔧</div>
+                        <h3>Herramientas en Desarrollo</h3>
+                        <p>Estamos trabajando en herramientas útiles para la comunidad.</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <div class="tool-icon">⚙️</div>
+                        <h3>Próximamente</h3>
+                        <p>Nuevas utilidades estarán disponibles pronto.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2 class="section-title">Contacto</h2>
+            <p>Ponte en contacto con nosotros para más información sobre nuestros servicios.</p>
+            
+            <div class="request-form">
+                <p>Puedes escribirnos directamente a nuestro correo electrónico:</p>
+                <p style="margin: 20px 0; font-size: 1.2rem;">
+                    <strong>Email:</strong> 
+                    <a href="mailto:davidgillermo84@gmail.com" style="color: var(--accent-2);">davidgillermo84@gmail.com</a>
+                </p>
+                <p>Te responderemos a la brevedad posible.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="brand">
+                        <div class="brand-badge">GD</div>
+                        <span>GD Desarrollos</span>
+                    </div>
+                    <p style="margin-top: 15px; color: var(--muted);">Ofreciendo soluciones digitales y recursos para informáticos.</p>
+                </div>
+                
+                <div>
+                    <h3>Enlaces rápidos</h3>
+                    <ul style="list-style: none; margin-top: 15px;">
+                        <li style="margin-bottom: 10px;"><a href="#portfolio" style="color: var(--accent-2); text-decoration: none;">Portafolio</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#request" style="color: var(--accent-2); text-decoration: none;">Solicitar servicios</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#tools" style="color: var(--accent-2); text-decoration: none;">Herramientas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contacto</h3>
+                    <p style="margin-top: 15px;"><a href="mailto:davidgillermo84@gmail.com" style="color: var(--accent-2); text-decoration: none;">davidgillermo84@gmail.com</a></p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 GD Desarrollos. Esta página se encuentra en desarrollo.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('serviceRequestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias por tu solicitud! Te contactaremos pronto a través del correo electrónico proporcionado.');
+            this.reset();
+        });
+    </script>
 </body>
 </html>
